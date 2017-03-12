@@ -1,0 +1,27 @@
+a="■"
+m=1
+while(1>0):
+    print(65*a)
+    if(m%2==0):
+        print("1")
+    if(m%4==0):
+        print("1")
+    if(m%8==0):
+        print("1")
+    if(m%16==0):
+        print("1")
+    if(m%32==0):
+        print("1")
+    if(m%64==0):
+        print("1")
+    if(m%128==0):
+        print("1")
+    if(m%256==0):
+        print("1")
+    if(m%512==0):
+        print("1")
+    if(m%1024==0):
+        print("1")
+    if(m%2048==0):
+        print("1")
+    m=m+1

@@ -1,0 +1,666 @@
+listed=[]
+n=int(input("Enter no of elements to be in the list > "))
+a=float(input("Enter no. > "))
+listed.append(a)
+print(1,listed)
+for i in range(1,n):
+    r=0
+    a=float(input("Enter no. > "))
+    for j in range(len(listed)):
+        print(listed)
+        if listed[j]>=a:
+            x=listed[:j]
+            print(x)
+            y=listed[j:]
+            print(y)
+            x.append(a)
+            x.extend(y)
+            listed=x
+            print(i+1,listed)
+            break
+        elif j==len(listed)-1:
+            listed.append(a)
+            print(i+1,listed)
+            break
+
+11
+
+accuracy=10
+n=float(input("Enter a no. > "))
+t=input("Convert to (B)inary , (O)ctal or (H)exadecimal > ")
+if t.lower().startswith('b'):
+    b=2
+elif t.lower().startswith('o'):
+    b=8
+elif t.lower().startswith('h'):
+    b=16
+nint=int(n//1)
+nflt=n%1
+x=""
+y=""
+while True:
+    if int(nint%b) <= 9:
+        x=x+str(int(nint%b))
+    if int(nint%b) > 9 :
+        h=(int(nint%b)-9)
+        x=x+chr(64+h)
+    nint=nint//b
+    if nint == 0:
+        break
+while True:
+    if int((nflt*b)//1) <= 9:
+        y=y+str(int((nflt*b)//1))
+    if int((nflt*b)//1) > 9:
+        h=(int((nflt*b)//1)-9)
+        y=y+chr(64+h)
+    nflt=(nflt*b)%1
+    if nflt==0 or len(y)>=accuracy:
+        break
+print("The %s value of number is"%{2:'binary',8:'octal',16:'hexadecimal'}[b],x[::-1]+"."+y)
+11
+
+class complexNo:
+    real=0
+    imaginary=0
+    def add(self,complexno):
+        'Second complex no'
+        self.real+=complexno.real
+        self.imaginary+=complexno.imaginary
+    def value(self,a,b):
+        'a,b <- a+bi'
+        self.real=a
+        self.imaginary=b
+    def __str__(self):
+        x=str(self.real)+'+'+str(self.imaginary)+'i'
+        return x
+a,b,c=complexNo(),complexNo(),complexNo()
+x=float(input("Enter real part of first complex no. > "))
+y=float(input("Enter imaginary part of first complex no. > "))
+z=float(input("Enter real part of second complex no. > "))
+w=float(input("Enter imaginary part of second complex no. > "))
+a.value(x,y)
+b.value(z,w)
+c.value(x,y)
+a.add(b)
+print(c,'+',b,'=',a)
+11
+
+n=int(input("Enter no upto which to be printed > "))
+for i in range(2,n+1):
+    x=1
+    for j in range(2,i):
+        if i%j==0:
+            x=0
+            break
+    if x==1:
+        print(i)
+
+11
+
+class distance:
+    inch=0
+    feet=0
+    def correct(self):
+        if self.inch>=12:
+            self.feet+=self.inch//12
+            self.inch=self.inch%12
+    def add(self,distance):
+        'Second distance'
+        self.inch+=distance.inch
+        self.feet+=distance.feet
+        self.correct()
+    def value(self,a,b):
+        self.inch=a
+        self.feet=b
+        self.correct()
+    def __str__(self):
+        x=str(self.feet)+' feets and '+str(self.inch)+' inches'
+        return x
+a,b,c=distance(),distance(),distance()
+x=float(input("Enter feet part of first distance > "))
+y=float(input("Enter inch part of first distance > "))
+z=float(input("Enter feet part of second distance > "))
+w=float(input("Enter inch part of second distance > "))
+a.value(y,x)
+b.value(w,z)
+c.value(y,x)
+a.add(b)
+print(c,'+',b,'=',a)
+11
+
+class timediff:
+    hours=0
+    minutes=0
+    seconds=0
+    def correct(self,t):
+        if t=='val':
+            if self.seconds>=60:
+                self.minutes+=self.seconds//60
+                self.seconds=self.seconds%60
+            if self.minutes>=60:
+                self.hours+=self.minutes//60
+                self.minutes=self.minutes%60
+        elif t=='dif':
+            if self.minutes < 0:
+                self.hours-=1
+                self.minutes+=60
+            if self.seconds < 0:
+                self.minutes-=1
+                self.seconds+=60
+    def difference(self,time):
+        'lesser time'
+        self.hours-=time.hours
+        self.minutes-=time.minutes
+        self.seconds-=time.seconds
+        self.correct('dif')
+    def value(self,a,b,c):
+        self.hours=a
+        self.minutes=b
+        self.seconds=c
+        self.correct('val')
+    def __str__(self):
+        x=str(self.hours)+' hours '+str(self.minutes)+' minutes and '+str(self.seconds)+' seconds'
+        return x
+a,b,c=timediff(),timediff(),timediff()
+x=int(input("Enter hours of first time > "))
+y=int(input("Enter minutes of first time > "))
+z=float(input("Enter seconds of first time > "))
+i=int(input("Enter hours of second time > "))
+j=int(input("Enter minutes of second time > "))
+k=float(input("Enter seconds of second time > "))
+if x>i or (x==i and y>j) or (x==i and y==j and z>=k):
+    a.value(x,y,z)
+    b.value(i,j,k)
+    c.value(x,y,z)
+else:
+    a.value(i,j,k)
+    b.value(x,y,z)
+    c.value(i,j,k)
+a.difference(b)
+print('Difference betwwen',c,'and',b,'is',a)
+11
+
+class society:
+    society_name=''
+    house_no=0
+    no_of_members=0
+    flat=''
+    income=0
+    def __init__(self):
+        self.society_name="Surya Apartments"
+        self.house_no=20
+        self.no_of_members=3
+        self.flat="A Type"
+        self.income=25000
+    def Inputdata(self,society,house_no,no_of_members,income):
+        self.society_name=society
+        self.house_no=house_no
+        self.no_of_members=no_of_members
+        self.income=income
+        self.allocate_flat()
+    def allocate_flat(self):
+        if self.income>=25000:
+            self.flat='A Type'
+        if self.income>=20000 and self.income<25000:
+            self.flat='B Type'
+        if self.income>=15000 and self.income<20000:
+            self.flat='C Type'
+        if self.income<15000:
+            self.flat='D Type'
+    def Showdata(self):
+        print('Society Name : %s\nHouse no. : %s\nNo. of members : %s\nFlat : %s\nIncome : %s'%(self.society_name,self.house_no,self.no_of_members,self.flat,self.income))
+surya=society()
+surya.Inputdata("Surya Apartments",15,4,17000)
+surya.Showdata()
+11
+
+class ITEMINFO:
+    ICode=0
+    Item=''
+    Price=0
+    Qty=0
+    Netprice=0
+    Discount=0
+    def __init__(self):
+        self.ICode=0
+        self.Item=''
+        self.Price=0
+        self.Qty=0
+        self.Netprice=0
+        self.Discount=0
+    def Buy(self,ICode,Item,Price,Qty):
+        self.ICode=ICode
+        self.Item=Item
+        self.Price=Price
+        self.Qty=Qty
+        self.Netprice=0
+        self.FindDisc()
+    def FindDisc(self):
+        if self.Qty>=20:
+            self.Discount=20
+        if self.Qty>=11 and self.Qty<20:
+            self.Discount=15
+        if self.Qty<11:
+            self.Discount=0
+        self.Net()
+    def Net(self):
+        total=self.Price*self.Qty
+        self.Netprice=total-(total*self.Discount/100)
+    def ShowAll(self):
+        print('''\
+Item Code : %s
+Item Name : %s
+Price of each item : %s
+Quantity in stock : %s
+Discount percentage on the item : %s
+Final Price : %s\
+'''%(self.ICode,self.Item,self.Price,self.Qty,self.Discount,self.Netprice))
+mall=ITEMINFO()
+mall.Buy(123,'RAM',1000,13)
+mall.ShowAll()
+11
+
+a=eval(input("Enter a List > "))
+b=float(input("Enter a no. > "))
+for i in range(len(a)):
+    if a[i]==b:
+        print("No. found at index",i)
+11
+
+def search(List,No):
+    low=0
+    high=len(List)-1
+    while low < high:
+        mid=(low+high)//2
+        if List[mid]==No:
+            print("Element Found at index %s"%(mid))
+            break
+        if List[mid]<No:
+            low=mid+1
+        if List[mid]>No:
+            high=mid-1
+    if low>=high:
+        print("Element not found")
+
+11
+
+a=[15,-5,20,-10,10]
+def insertionSort(seq):
+    for p in range(1, len(seq)):
+        while p != 0 and seq[p] < seq[p-1]:
+            seq[p], seq[p-1] = seq[p-1], seq[p]
+            p -= 1
+            print(seq)
+insertionSort(a)
+11
+
+#Icode,  Item,       ,Qty,Price
+a=[[1,  'RAM'         ,10,1000],
+   [2,  'Hard Disk'   ,3, 5000],
+   [3,  'Mother Board',2, 4000],
+   [4,  'Processor'   ,2,10000]]
+def insertionSort(seq,index):
+    for p in range(1, len(seq)):
+        while p != 0 and seq[p][index] > seq[p-1][index]:
+            seq[p], seq[p-1] = seq[p-1], seq[p]
+            p -= 1
+    return seq
+
+def bubble_sort(seq,index):
+    """Sort the mutable sequence seq in place and return it."""
+    for i in reversed(range(len(seq))):
+        finished = True
+        for j in range(i):
+            if seq[j][index] > seq[j + 1][index]:
+                seq[j], seq[j + 1] = seq[j + 1], seq[j]
+                finished = False
+        if finished:
+            break
+    return seq
+print(bubble_sort(a,3))
+print(insertionSort(a,2))
+11
+
+a=[15,-5,20,-10,10]
+x=0
+def insertionSort(seq):
+    for p in range(1, len(seq)):
+        while p != 0 and seq[p] < seq[p-1]:
+            seq[p], seq[p-1] = seq[p-1], seq[p]
+            p -= 1
+    return seq
+
+a=eval(input("Enter a List > "))
+b=float(input("Enter a no. > "))
+a=insertionSort(a)
+for i in range(len(a)):
+    if a[i]==b:
+        x=[i]
+        break
+if x==0:
+    print('No. not found')
+else:
+    print("No. found at index",x[0])
+11
+
+class employee:
+    e_no=0
+    e_name=''
+    e_designation=''
+    e_address=''
+    e_phno=0
+    def __init__(self,values=None):
+        if values==None:
+            no=int(input("Enter Employee No. > "))
+            name=(input("Enter Employee Name > "))
+            desig=(input("Enter Employee Designation > "))
+            add=(input("Enter Employee Address > "))
+            phno=int(input("Enter Employee Phone No. > "))
+            values=(no,name,desig,add,phno)
+        self.e_no=values[0]
+        self.e_name=values[1]
+        self.e_designation=values[2]
+        self.e_address=values[3]
+        self.e_phno=values[4]
+    def getdata(self):
+        return (self.e_no,self.e_name,self.e_designation,self.e_address,self.e_phno)
+    def putdata(self):
+         print (self.e_no,self.e_name,self.e_designation,self.e_address,self.e_phno,sep='\n')
+class salary(employee):
+    basicPay=0
+    DA=0
+    HRA=0
+    grossPay=0
+    PF=0
+    incomeTax=0
+    netPay=0
+    def getdata1(self):
+        emp=self.getdata()
+        if emp[2]=='Accountant':
+            self.basicPay=30000
+            self.grossPay=30000
+            self.incomeTax=3000
+        elif emp[2]=='Manager':
+            self.basicPay=80000
+            self.DA=10000
+            self.HRA=15000
+            self.grossPay=105000
+            self.incomeTax=31500
+        self.calculate()
+    def calculate(self):
+        self.netPay=self.grossPay-self.incomeTax
+    def display(self):
+        self.putdata()
+        print(self.basicPay,self.DA,self.HRA,self.grossPay,self.PF,self.incomeTax,self.netPay,sep='\n')
+alex=salary((1,'Alex','Manager','Street-2',1234567890))
+joe=salary((2,'Joe','Accountant','Street-7',1235678990))
+amit=salary((3,'Amit','Accountant','Street-6',1345567890))
+alex.getdata1()
+joe.getdata1()
+amit.getdata1()
+alex.display()
+print()
+joe.display()
+print()
+amit.display()
+print()
+11
+
+class time:
+    hour=0
+    minute=0
+    second=0
+    def __init__(self):
+        self.hour=0
+        self.minute=0
+        self.second=0
+    def get(self):
+        print('Hours = '+str(self.hour),'Minutes = '+str(self.minute),'Seconds = '+str(self.second),sep='\n')
+    def setTime(self,elapse_Time):
+        et=elapse_Time
+        self.hour=et//3600
+        et=et%3600
+        self.minute=et//60
+        et=et%60
+        self.second=et
+Time=time()
+Time.setTime(555550)
+Time.get()
+11
+
+class LinearEquation:
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    f=0
+    def get_a(self):
+        self.a=float(input("Enter a > "))
+    def get_b(self):
+        self.b=float(input("Enter b > "))
+    def get_c(self):
+        self.c=float(input("Enter c > "))
+    def get_d(self):
+        self.d=float(input("Enter d > "))
+    def get_e(self):
+        self.e=float(input("Enter e > "))
+    def get_f(self):
+        self.f=float(input("Enter f > "))
+    def getX(self):
+        if self.isSolvable():
+            print(((e*d)-(b*f))/((a*d)-(b*c)))
+        else:
+            print("Equation has no solution")
+    def getY(self):
+        if self.isSolvable():
+            print(((a*f)-(e*c))/((a*d)-(b*c)))
+        else:
+            print("Equation has no solution")
+    def isSolvable(self):
+        if ((a*d)-(b*c))  !=0:
+            return True
+        else:
+            return False
+
+le=LinearEquation()
+print("for equations:\na*x+b*y=e and\nc*x+d*y=f")
+le.get_a()
+le.get_b()
+le.get_c()
+le.get_d()
+le.get_e()
+le.get_f()
+le.getX()
+le.getY()
+11
+
+def sumRow(matrix,row):
+   row=i
+   total = 0
+   for column in range(len(matrix[i])):
+      total += matrix[row][column]
+   return total
+def sumColumn(matrix,column):
+   column=i
+   total = 0
+   for row in range(len(matrix)):
+      total += matrix[row][column]
+   return total
+matrix=[[1,2,3],
+        [4,5,6],
+        [7,8,9]]
+for i in range(len(matrix)):
+   print(sumRow(matrix,i))
+for i in range(len(matrix[0])):
+   print(sumColumn(matrix,i))
+11
+
+
+def diagonalsum(m):
+  count = 0
+  for i in range(0, len(m)):
+    count += m[i][i]
+  return count
+matrix=[[1,2,3],
+        [4,5,6],
+        [7,8,9]]
+print(diagonalsum(matrix))
+11
+
+matrix=[]
+m=int(input("Enter no of rows > "))
+n=int(input("Enter no of columns > "))
+for i in range(m):
+  x=[]
+  for j in range(n):
+    x.append(int(input("Enter "+str(i+1)+' , '+str(j+1)+' element : ')))
+  matrix.append(x)
+a=[]
+for i in range(len(matrix)):
+  x=[0,0]
+  for j in range(len(matrix[i])):
+    if matrix[i][j]>x[0]:
+      x=[matrix[i][j],j]
+  a.append(x)
+x=[[0,0],0]
+for i in range(len(a)):
+  if a[i][0]>x[0][0]:
+    x=[a[i],i]
+print("Largest element is at",x[1]+1,',',x[0][1]+1)
+11
+
+def insertionSort(seq):
+    for p in range(1, len(seq)):
+        while p != 0 and seq[p] < seq[p-1]:
+            seq[p], seq[p-1] = seq[p-1], seq[p]
+            p -= 1
+            print(seq)
+
+def selectionSort(lst):
+    for i_sortpos in range(len(lst)):
+        genexp = ((n, i) for i, n in enumerate(lst[i_sortpos:]))
+        _, i_min = min(genexp)
+        i_min += i_sortpos
+        lst[i_sortpos], lst[i_min] = lst[i_min], lst[i_sortpos]
+        print(lst)
+a=[6,5,4,3,7,1,2]
+selectionSort(a)
+a=[6,5,4,3,7,1,2]
+print()
+insertionSort(a)
+11
+
+def line_intersect(line_1,line_2):
+    l1,l2=line_1,line_2
+    m1=(l1[1][1]-l1[0][1])/(l1[1][0]-l1[0][0])
+    m2=(l2[1][1]-l2[0][1])/(l2[1][0]-l2[0][0])
+    c1=-m1*l1[0][0]+l1[0][1]
+    c2=-m2*l2[0][0]+l2[0][1]
+    if m1==m2 and c1==c2:
+        return l1
+    elif m1!=m2:
+        a=[[-m1,1],[-m2,1]]
+        b=[[c1],[c2]]
+        deta=1/((a[1][1]*a[0][0])-(a[0][1]*a[1][0]))
+        ainv=[[a[1][1]*deta,-a[0][1]*deta],[-a[1][0]*deta,a[0][0]*deta]]
+
+        result = [0,0]
+
+        for i in range(len(a)):
+           for j in range(len(b[0])):
+               for k in range(len(b)):
+                   result[i] += a[i][k] * b[k][j]
+
+        
+        return result 
+    else:
+        return None
+11
+
+def rotate(seq):
+    lst=seq[-1]
+    rot=[lst]
+    for i in range(len(seq)-1):
+        rot.append(seq[i])
+    return rot
+a=[1,2,3,4,5,6]
+print(rotate(a))
+11
+
+def rotate(seq):
+    lst=seq[-1]
+    rot=[lst]
+    for i in range(len(seq)-1):
+        rot.append(seq[i])
+    return rot
+a=[1,2,3,4,5,6]
+print(rotate(a))
+11
+
+def fibonacci(n):
+    a,b = 0,1
+    #yield a
+    print(b)
+    for i in range(n-1):
+        a, b = b, a + b
+        print(b)
+11
+
+month={
+    'January':31,
+    'February':28,
+    'March':31,
+    'April':30,
+    'May':31,
+    'June':30,
+    'July':31,
+    'August':31,
+    'September':30,
+    'October':31,
+    'November':30,
+    'December':31}
+for i in {28,30,31}:
+    for j in month:
+        if month[j]==i:
+            print (month[j],j)
+
+11
+
+def binarySearch(alist, item):
+    first = 0
+    last = len(alist)-1
+    found = False
+
+    while first<=last and not found:
+        midpoint = (first + last)//2
+        if alist[midpoint] == item:
+            found = True
+        else:
+            if item < alist[midpoint]:
+                last = midpoint-1
+            else:
+                first = midpoint+1
+
+    return found
+
+testlist = [0, 1, 2, 8, 13, 17, 19, 32, 42,]
+print(binarySearch(testlist, 3))
+print(binarySearch(testlist, 13))
+11
+
+a=[]
+for i in range(10):
+    x,y=eval(input("Enter x,y > "))
+    
+    a.append((x,y))
+x=float('inf')
+b=[]
+for i in range(11):
+    for j in range(i+1,11):
+        d=((((a[j][0]-a[i][0])**2)+((a[j][1]-a[i][1])**2))**(1/2))
+        if d < x:
+            x=d
+            b=[[a[i][0],a[i][1]],[a[j][0],a[j][1]]]
+print(b)
+
